@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eye Hospital Management System offers advanced eye care services including cataract surgery, LASIK, and glaucoma treatment.">
+    <meta name="keywords" content="eye hospital, ophthalmology, eye care, cataract surgery, LASIK, glaucoma treatment">
+    <title>Eye Hospital Management System</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <!-- Libraries -->
+    <link rel="stylesheet" href="lib/animate/animate.min.css">
+    <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css">
+
+    <!-- Bootstrap and Custom CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Optimized Custom CSS -->
+    <style>
+        :root {
+            --primary: #007bff;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+            color: var(--dark);
+        }
+
+        /* Navbar */
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        .navbar-brand h1 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        .navbar-brand h1:hover {
+            color: var(--primary);
+        }
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+            color: var(--dark);
+        }
+        .navbar-nav .nav-link:hover {
+            color: var(--primary);
+        }
+        /* Active Link Styling */
+        .navbar-nav .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                text-align: center;
+                padding: 1rem 0;
+            }
+            .navbar-nav .nav-link.active {
+                border-bottom: none;
+                background-color: rgba(0, 123, 255, 0.1);
+                border-radius: 5px;
+            }
+        }
+
+        /* Header Carousel */
+        .header-carousel .owl-carousel-item {
+            position: relative;
+            overflow: hidden;
+        }
+        .header-carousel .owl-carousel-item img {
+            max-height: 500px;
+            object-fit: cover;
+            width: 100%;
+            loading: lazy;
+            transition: transform 0.5s ease;
+        }
+        .header-carousel .owl-carousel-item:hover img {
+            transform: scale(1.05);
+        }
+        .header-carousel .owl-carousel-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: opacity 0.3s ease;
+        }
+        .header-carousel .owl-carousel-item:hover .owl-carousel-text {
+            opacity: 0.8;
+        }
+        @media (max-width: 767px) {
+            .header-carousel .owl-carousel-item img {
+                max-height: 300px;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Forms */
+        .form-control, .form-select {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            height: 50px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+        textarea.form-control {
+            height: 120px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Service Items */
+        .service-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Team Items */
+        .team-item img {
+            transition: transform 0.3s ease;
+        }
+        .team-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Footer */
+        .footer .btn-link {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer .btn-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 767px) {
+            .appointment .form-control,
+            .appointment .form-select {
+                height: 45px;
+            }
+            .appointment textarea {
+                min-height: 100px;
+            }
+            .team-item img {
+                width: 100%;
+            }
+        }
+
+        /* Contact Info Links */
+        .contact-info a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Spinner -->
+<div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center" aria-hidden="true">
+    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s" aria-label="Main navigation">
+    <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h1 class="m-0 text-primary"><i class="far fa-eye me-3" aria-hidden="true"></i>Eye Hospital</h1>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="/" class="nav-item nav-link active" aria-current="page">Home</a>
+            <a href="about" class="nav-item nav-link">About</a>
+            <a href="service" class="nav-item nav-link">Services</a>
+            <a href="appointment" class="nav-item nav-link">Appointment</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                    <a href="feature" class="dropdown-item">Features</a>
+                    <a href="team" class="dropdown-item">Our Doctors</a>
+                    <a href="404" class="dropdown-item">404 Page</a>
+                </div>
+            </div>
+            <a href="contact" class="nav-item nav-link">Contact</a>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+<!-- Header -->
+<section class="container-fluid bg-primary p-0 mb-5" aria-labelledby="header-title">
+    <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
+        <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
+            <h1 id="header-title" class="display-4 text-white mb-4">Clear Vision for a Bright Future</h1>
+            <div class="row g-4">
+                <div class="col-sm-4">
+                    <div class="border-start border-light ps-4">
+                        <h2 class="text-white mb-1" data-toggle="counter-up">123</h2>
+                        <p class="text-light mb-0">Expert Ophthalmologists</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="border-start border-light ps-4">
+                        <h2 class="text-white mb-1" data-toggle="counter-up">1234</h2>
+                        <p class="text-light mb-0">Medical Staff</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="border-start border-light ps-4">
+                        <h2 class="text-white mb-1" data-toggle="counter-up">12345</h2>
+                        <p class="text-light mb-0">Total Patients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <div class="owl-carousel header-carousel">
+                <div class="owl-carousel-item position-relative">
+                    <img class="img-fluid" src="img/carousel-1.jpg" alt="Cataract surgery procedure" loading="lazy">
+                    <div class="owl-carousel-text">
+                        <h2 class="display-4 text-white mb-0">Cataract Surgery</h2>
+                    </div>
+                </div>
+                <div class="owl-carousel-item position-relative">
+                    <img class="img-fluid" src="img/carousel-2.jpg" alt="LASIK surgery procedure" loading="lazy">
+                    <div class="owl-carousel-text">
+                        <h2 class="display-4 text-white mb-0">LASIK Surgery</h2>
+                    </div>
+                </div>
+                <div class="owl-carousel-item position-relative">
+                    <img class="img-fluid" src="img/carousel-3.jpg" alt="Glaucoma treatment procedure" loading="lazy">
+                    <div class="owl-carousel-text">
+                        <h2 class="display-4 text-white mb-0">Glaucoma Treatment</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="container-xxl py-5" aria-labelledby="about-title">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="d-flex flex-column">
+                    <img class="img-fluid rounded w-75 align-self-end" src="img/about-1.jpg" alt="Eye hospital facility" loading="lazy">
+                    <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="img/about-2.jpg" alt="Eye care equipment" loading="lazy" style="margin-top: -25%;">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <span class="d-inline-block border rounded-pill py-1 px-4">About Us</span>
+                <h2 id="about-title" class="mb-4">Why Trust Our Eye Care?</h2>
+                <p>We provide advanced eye care services with a team of qualified ophthalmologists dedicated to your vision health. Our state-of-the-art facilities ensure precise diagnostics and effective treatments.</p>
+                <p class="mb-4">With a focus on patient comfort and cutting-edge technology, we strive to deliver personalized care that meets your unique needs.</p>
+                <ul class="list-unstyled">
+                    <li><i class="far fa-check-circle text-primary me-3" aria-hidden="true"></i>Advanced Eye Care</li>
+                    <li><i class="far fa-check-circle text-primary me-3" aria-hidden="true"></i>Qualified Ophthalmologists</li>
+                    <li><i class="far fa-check-circle text-primary me-3" aria-hidden="true"></i>Vision Research Experts</li>
+                </ul>
+                <a class="btn btn-primary rounded-pill py-2 px-4 mt-3" href="about">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="container-xxl py-5" aria-labelledby="services-title">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <span class="d-inline-block border rounded-pill py-1 px-4">Services</span>
+            <h2 id="services-title">Vision Care Solutions</h2>
+        </div>
+        <div class="row g-4">
+            <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item bg-light rounded h-100 p-4">
+                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 60px; height: 60px;">
+                        <i class="fa fa-eye text-primary fs-4" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="mb-3">Cataract Surgery</h3>
+                    <p class="mb-4">Advanced surgical procedures to restore clear vision by removing clouded lenses.</p>
+                    <a class="btn" href="service#cataract"><i class="fa fa-plus text-primary me-2" aria-hidden="true"></i>Read More</a>
+                </div>
+            </article>
+            <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item bg-light rounded h-100 p-4">
+                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 60px; height: 60px;">
+                        <i class="fa fa-glasses text-primary fs-4" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="mb-3">LASIK Surgery</h3>
+                    <p class="mb-4">Laser-assisted surgery to correct vision and reduce dependency on glasses.</p>
+                    <a class="btn" href="service#lasik"><i class="fa fa-plus text-primary me-2" aria-hidden="true"></i>Read More</a>
+                </div>
+            </article>
+            <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item bg-light rounded h-100 p-4">
+                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 60px; height: 60px;">
+                        <i class="fa fa-low-vision text-primary fs-4" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="mb-3">Glaucoma Treatment</h3>
+                    <p class="mb-4">Comprehensive care to manage and treat glaucoma, preserving your vision.</p>
+                    <a class="btn" href="service#glaucoma"><i class="fa fa-plus text-primary me-2" aria-hidden="true"></i>Read More</a>
+                </div>
+            </article>
+            <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item bg-light rounded h-100 p-4">
+                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 60px; height: 60px;">
+                        <i class="fa fa-eye-dropper text-primary fs-4" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="mb-3">Retina Care</h3>
+                    <p class="mb-4">Specialized treatments for retinal disorders to protect and enhance vision.</p>
+                    <a class="btn" href="service#retina"><i class="fa fa-plus text-primary me-2" aria-hidden="true"></i>Read More</a>
+                </div>
+            </article>
+            <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item bg-light rounded h-100 p-4">
+                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 60px; height: 60px;">
+                        <i class="fa fa-child text-primary fs-4" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="mb-3">Pediatric Ophthalmology</h3>
+                    <p class="mb-4">Expert care for children's vision, addressing developmental and congenital issues.</p>
+                    <a class="btn" href="service#pediatric"><i class="fa fa-plus text-primary me-2" aria-hidden="true"></i>Read More</a>
+                </div>
+            </article>
+            <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item bg-light rounded h-100 p-4">
+                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 60px; height: 60px;">
+                        <i class="fa fa-vials text-primary fs-4" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="mb-3">Diagnostic Testing</h3>
+                    <p class="mb-4">Advanced diagnostic tools for accurate assessment of eye health.</p>
+                    <a class="btn" href="service#diagnostic"><i class="fa fa-plus text-primary me-2" aria-hidden="true"></i>Read More</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="container-fluid bg-primary overflow-hidden my-5 px-lg-0" aria-labelledby="features-title">
+    <div class="container px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-6 py-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="p-lg-5 ps-lg-0">
+                    <span class="d-inline-block border rounded-pill text-light py-1 px-4">Features</span>
+                    <h2 id="features-title" class="text-white mb-4">Why Choose Us</h2>
+                    <p class="text-white mb-4">Our commitment to excellence ensures you receive top-tier eye care with personalized attention and advanced technology.</p>
+                    <div class="row g-4">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 50px; height: 50px;">
+                                    <i class="fa fa-user-md text-primary" aria-hidden="true"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="text-white mb-1">Experienced</p>
+                                    <h5 class="text-white mb-0">Ophthalmologists</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 50px; height: 50px;">
+                                    <i class="fa fa-check text-primary" aria-hidden="true"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="text-white mb-1">Advanced</p>
+                                    <h5 class="text-white mb-0">Technology</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 50px; height: 50px;">
+                                    <i class="fa fa-comment-medical text-primary" aria-hidden="true"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="text-white mb-1">Personalized</p>
+                                    <h5 class="text-white mb-0">Consultation</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 50px; height: 50px;">
+                                    <i class="fa fa-headphones text-primary" aria-hidden="true"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <p class="text-white mb-1">24/7</p>
+                                    <h5 class="text-white mb-0">Support</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s">
+                <img class="img-fluid w-100 h-100" src="img/feature.jpg" alt="Advanced eye care technology" loading="lazy" style="object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team -->
+<section class="container-xxl py-5" aria-labelledby="team-title">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <span class="d-inline-block border rounded-pill py-1 px-4">Doctors</span>
+            <h2 id="team-title">Our Expert Ophthalmologists</h2>
+        </div>
+        <div class="row g-4">
+            <article class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item rounded overflow-hidden">
+                    <img class="img-fluid" src="img/team-1.jpg" alt="Dr. John Doe, Ophthalmologist" loading="lazy">
+                    <div class="team-text bg-light text-center p-4">
+                        <h3>Dr. John Doe</h3>
+                        <p class="text-primary">Ophthalmology</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href="#" aria-label="Facebook profile of Dr. John Doe"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Twitter profile of Dr. John Doe"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Instagram profile of Dr. John Doe"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item rounded overflow-hidden">
+                    <img class="img-fluid" src="img/team-2.jpg" alt="Dr. Jane Smith, Ophthalmologist" loading="lazy">
+                    <div class="team-text bg-light text-center p-4">
+                        <h3>Dr. Jane Smith</h3>
+                        <p class="text-primary">Ophthalmology</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href="#" aria-label="Facebook profile of Dr. Jane Smith"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Twitter profile of Dr. Jane Smith"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Instagram profile of Dr. Jane Smith"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="team-item rounded overflow-hidden">
+                    <img class="img-fluid" src="img/team-3.jpg" alt="Dr. Emily Brown, Ophthalmologist" loading="lazy">
+                    <div class="team-text bg-light text-center p-4">
+                        <h3>Dr. Emily Brown</h3>
+                        <p class="text-primary">Ophthalmology</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href="#" aria-label="Facebook profile of Dr. Emily Brown"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Twitter profile of Dr. Emily Brown"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Instagram profile of Dr. Emily Brown"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="team-item rounded overflow-hidden">
+                    <img class="img-fluid" src="img/team-4.jpg" alt="Dr. Michael Lee, Ophthalmologist" loading="lazy">
+                    <div class="team-text bg-light text-center p-4">
+                        <h3>Dr. Michael Lee</h3>
+                        <p class="text-primary">Ophthalmology</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href="#" aria-label="Facebook profile of Dr. Michael Lee"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Twitter profile of Dr. Michael Lee"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href="#" aria-label="Instagram profile of Dr. Michael Lee"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment -->
+<section class="container-xxl py-5" aria-labelledby="appointment-title">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <span class="d-inline-block border rounded-pill py-1 px-4">Appointment</span>
+                <h2 id="appointment-title" class="mb-4">Book an Eye Checkup</h2>
+                <p class="mb-4">Schedule a consultation with our specialists to address your vision concerns.</p>
+                <div class="bg-light rounded d-flex align-items-center p-4 mb-4 contact-info">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 50px; height: 50px;">
+                        <i class="fa fa-phone-alt text-primary" aria-hidden="true"></i>
+                    </div>
+                    <div class="ms-3">
+                        <p class="mb-1">Call Us</p>
+                        <h5 class="mb-0"><a href="tel:+919569608453">+91 9569608453</a></h5>
+                    </div>
+                </div>
+                <div class="bg-light rounded d-flex align-items-center p-4 contact-info">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 50px; height: 50px;">
+                        <i class="fa fa-envelope-open text-primary" aria-hidden="true"></i>
+                    </div>
+                    <div class="ms-3">
+                        <p class="mb-1">Email Us</p>
+                        <h5 class="mb-0"><a href="mailto:sid.adnan9569@gmail.com">sid.adnan9569@gmail.com</a></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded h-100 p-5">
+                    <form action="/appointment" method="POST">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <label for="name" class="sr-only">Your Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="email" class="sr-only">Your Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="mobile" class="sr-only">Your Mobile</label>
+                                <input type="tel" id="mobile" class="form-control" placeholder="Your Mobile" pattern="[0-9]{10}" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="doctor" class="sr-only">Choose Ophthalmologist</label>
+                                <select id="doctor" class="form-select" required>
+                                    <option value="" disabled selected>Choose Ophthalmologist</option>
+                                    <option value="1">Dr. John Doe</option>
+                                    <option value="2">Dr. Jane Smith</option>
+                                    <option value="3">Dr. Emily Brown</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="date" class="sr-only">Choose Date</label>
+                                <input type="text" id="date" class="form-control datetimepicker-input" placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="time" class="sr-only">Choose Time</label>
+                                <input type="text" id="time" class="form-control datetimepicker-input" placeholder="Choose Time" data-target="#time" data-toggle="datetimepicker" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="concerns" class="sr-only">Describe Your Vision Concerns</label>
+                                <textarea id="concerns" class="form-control" rows="4" placeholder="Describe your vision concerns"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Book Appointment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="container-xxl py-5" aria-labelledby="testimonials-title">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <span class="d-inline-block border rounded-pill py-1 px-4">Testimonials</span>
+            <h2 id="testimonials-title">What Our Patients Say</h2>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            <article class="testimonial-item text-center">
+                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg" alt="Patient John Smith" loading="lazy" style="width: 100px; height: 100px;">
+                <div class="testimonial-text rounded text-center p-4">
+                    <p>The care I received was exceptional. The staff was professional, and the surgery restored my vision perfectly!</p>
+                    <h3 class="mb-1">John Smith</h3>
+                    <span class="fst-italic">Teacher</span>
+                </div>
+            </article>
+            <article class="testimonial-item text-center">
+                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg" alt="Patient Sarah Johnson" loading="lazy" style="width: 100px; height: 100px;">
+                <div class="testimonial-text rounded text-center p-4">
+                    <p>Thanks to the LASIK surgery, I no longer need glasses. The team was incredibly supportive!</p>
+                    <h3 class="mb-1">Sarah Johnson</h3>
+                    <span class="fst-italic">Engineer</span>
+                </div>
+            </article>
+            <article class="testimonial-item text-center">
+                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg" alt="Patient Michael Brown" loading="lazy" style="width: 100px; height: 100px;">
+                <div class="testimonial-text rounded text-center p-4">
+                    <p>The glaucoma treatment was thorough, and I feel confident in the care I received.</p>
+                    <h3 class="mb-1">Michael Brown</h3>
+                    <span class="fst-italic">Retiree</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Start -->
+<footer class="container-fluid bg-dark text-light mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s" aria-label="Footer">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6 contact-info">
+                <h3 class="text-light mb-4">Contact Us</h3>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3" aria-hidden="true"></i>Lucknow, Uttar Pradesh, India</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3" aria-hidden="true"></i><a href="tel:+919569608453">+91 9569608453</a></p>
+                <p class="mb-2"><i class="fa fa-envelope me-3" aria-hidden="true"></i><a href="mailto:sid.adnan9569@gmail.com">sid.adnan9569@gmail.com</a></p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social rounded-circle" href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-light mb-4">Services</h3>
+                <a class="btn btn-link" href="service#cataract">Cataract Surgery</a>
+                <a class="btn btn-link" href="service#lasik">LASIK Surgery</a>
+                <a class="btn btn-link" href="service#glaucoma">Glaucoma Treatment</a>
+                <a class="btn btn-link" href="service#retina">Retina Care</a>
+                <a class="btn btn-link" href="service#diagnostic">Diagnostic Testing</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-light mb-4">Quick Links</h3>
+                <a class="btn btn-link" href="about">About Us</a>
+                <a class="btn btn-link" href="contact">Contact Us</a>
+                <a class="btn btn-link" href="service">Our Services</a>
+                <a class="btn btn-link" href="terms">Terms & Conditions</a>
+                <a class="btn btn-link" href="support">Support</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h3 class="text-light mb-4">Newsletter</h3>
+                <form action="/newsletter" method="POST" id="newsletter-form">
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <label for="newsletter-email" class="sr-only">Your Email</label>
+                        <input id="newsletter-email" class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" placeholder="Your email" required aria-describedby="newsletter-error">
+                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Sign Up</button>
+                        <div id="newsletter-error" class="text-danger mt-2 sr-only"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    © <a class="border-bottom" href="/">Eye Hospital Management System</a>, All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    Designed By <a class="border-bottom" href="https://www.linkedin.com/in/adnan-siddiqui-83080822b/">Adnan Siddiqui</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template JavaScript -->
+<script src="js/main.js"></script>
+
+<!-- Custom Scroll JavaScript -->
+<script>
+    // Navbar background change on scroll
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+            $('.navbar').addClass('scrolled');
+            $('.back-to-top').addClass('visible');
+        } else {
+            $('.navbar').removeClass('scrolled');
+            $('.back-to-top').removeClass('visible');
+        }
+    });
+
+    // Smooth scroll for anchor links
+    $('a[href*="#"]').not('[href="#"]').click(function(event) {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            event.preventDefault();
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top
+                }, 1000);
+                return false;
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
